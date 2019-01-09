@@ -6,6 +6,7 @@ const dbName = "test"
 
 
 //////////////////////////////////////////////////////////insert
+
 // MongoClient.connect(url, function(err, client) {
     
 //     //checking connection
@@ -36,8 +37,35 @@ const dbName = "test"
 
 
 ////////////////////////////////////////////////fetch
+
+// MongoClient.connect(url,(err,client)=>{
+//     //checking connection
+//     if(err){
+//         return console.log("Unable To Connect Mongo DataBase",err);
+//     }
+//     else{
+//         console.log("Connected succefull !");
+//     }
+
+//     const db=client.db(dbName);
+
+//     db.collection('Todos').find().toArray().then((val)=>{
+//         console.log(val);
+        
+//     },(er)=>{
+//         console.log(er);
+        
+//     })
+
+//     client.close();
+
+// })
+
+
+/////////////////////////////////////////////////////delete
+
 MongoClient.connect(url,(err,client)=>{
-    //checking connection
+
     if(err){
         return console.log("Unable To Connect Mongo DataBase",err);
     }
@@ -47,12 +75,8 @@ MongoClient.connect(url,(err,client)=>{
 
     const db=client.db(dbName);
 
-    db.collection('Todos').find().toArray().then((val)=>{
-        console.log(val);
-        
-    },(er)=>{
-        console.log(er);
-        
+    db.collection('Todos').deleteOne({Name : "Hamid"}).then((res)=>{
+        console.log(res);
     })
 
     client.close();
