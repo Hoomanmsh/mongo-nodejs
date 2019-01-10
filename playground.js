@@ -64,10 +64,31 @@ const dbName = "test"
 
 /////////////////////////////////////////////////////delete
 
-MongoClient.connect(url,(err,client)=>{
+// MongoClient.connect(url,(err,client)=>{
 
+//     if(err){
+//         return console.log("Unable To Connect Mongo DataBase",err);
+//     }
+//     else{
+//         console.log("Connected succefull !");
+//     }
+
+//     const db=client.db(dbName);
+
+//     db.collection('Todos').deleteOne({Name : "Hamid"}).then((res)=>{
+//         console.log(res);
+//     })
+
+//     client.close();
+
+// })
+
+
+///////////////////////////////////////////////////////// update
+
+MongoClient.connect(url,(err,client)=>{
     if(err){
-        return console.log("Unable To Connect Mongo DataBase",err);
+        return console.log("Unable to connect Mongo DataBase",err);
     }
     else{
         console.log("Connected succefull !");
@@ -75,10 +96,12 @@ MongoClient.connect(url,(err,client)=>{
 
     const db=client.db(dbName);
 
-    db.collection('Todos').deleteOne({Name : "Hamid"}).then((res)=>{
-        console.log(res);
+    db.collection("Todos").findOneAndUpdate({Name:"Hooman"},{
+        $set:{Age:30}
+    }).then((res)=>{
+        console.log("response :    ",res);
+        
     })
 
     client.close();
-
 })
